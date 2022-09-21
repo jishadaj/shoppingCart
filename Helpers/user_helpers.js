@@ -16,14 +16,14 @@ var instance = new Razorpay({
 module.exports = {
     doSignup: (userData) => {
 
-        userData.isBlocked = false
+        //userData.isBlocked = false
         return new Promise(async (resolve, reject) => {
             let response = {}
 
             userData.Password = await bcrypt.hash(userData.Password, 10)
-            db.get().collection(collection.USER_COLLECTIONS).insertOne(userData).then(async (data) => {
-                let user = await db.get().collection(collection.USER_COLLECTIONS).findOne((data.insertedId))
-                response.user = user
+            db.get().collection(collection.ADMIN_COLLECTION).insertOne(userData).then(async (data) => {
+                //let user = await db.get().collection(collection.USER_COLLECTIONS).findOne((data.insertedId))
+               // response.user = user
                 resolve(response)
             })
         })
