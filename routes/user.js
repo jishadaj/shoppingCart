@@ -196,7 +196,13 @@ router.get('/place_order', verifyLogin, async (req, res) => {
 router.post('/place_order', verifyLogin, async (req, res) => {
 
   let products = await userHeplers.getCartProList(req.body.userId)
-  let totalPrice = await userHeplers.getTotalAmount(req.body.userId)
+  let totalPrice = 0
+  if(req.session.coupon){
+    totalPrice = req.session.total
+  }else{
+    totalPrice = await userHeplers.getTotalAmount(req.body.userId)
+  }
+  
   let couponDetais = req.session.coupon
 
   userHeplers.placeOrder(req.body, products, totalPrice,couponDetais).then((orderId) => {
@@ -314,7 +320,7 @@ router.post('/apply_coupon',(req,res)=>{
   productHelpers.applyCoupon(req.body).then((response)=>{
     if (response.status) {
       req.session.coupon = response.coupon
-      req.session.discount = response.discountTotal
+      req.session.total = response.discountTotal
     }
     res.json(response)
   })

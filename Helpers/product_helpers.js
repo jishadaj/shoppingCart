@@ -9,7 +9,7 @@ var objectId = require('mongodb').ObjectId
 module.exports = {
 
     addProduct: (product, callback) => {
-        console.log( product );
+        
         product.Price = parseInt(product.Price)
         db.get().collection('product').insertOne(product).then((data) => {
             callback(data.insertedId)
