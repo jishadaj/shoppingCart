@@ -1,5 +1,7 @@
-const client =require('twilio')('AC4cf01ad73ef371a51889153dcde1c38f','68277e84e25c84ec05f2c5ffc3dae074')
-const servicesId='VA60dff821219b8ee9b0b2e04bbe9b9a01'
+const env=require('dotenv')
+env.config()
+const client =require('twilio')(process.env.TWILIO_ACCOUNDSID,process.env.TWILIO_AUTHTOCKEN)
+const servicesId=process.env.TWILIO_SERVICEID
 
 module.exports={
     doSms:(number)=>{
@@ -19,7 +21,7 @@ module.exports={
     otpVerify:(otpData,number)=>{
         let res={}
         return new Promise((resolve, reject) => {
-            client.verify.services(servicesId).verificationChecks.create({
+            client.verify.services(process.env.TWILIO_SERVICEID).verificationChecks.create({
                 to:`+91${number}`,
                 code:otpData.otp
             }).then((res)=>{
