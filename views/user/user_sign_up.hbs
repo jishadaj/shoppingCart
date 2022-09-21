@@ -1,0 +1,197 @@
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                <form id="form" action="/sign_up" name="myform" method="post" class="mx-1 mx-md-4"
+                  onsubmit="return validateform()">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="name" name="name" class="form-control" autocomplete="off"
+                        placeholder="Your Name" />
+                      {{!-- <label class="form-label" for="name">Your Name</label> --}}
+                      <span id="yourname" class="text-danger font-weight-bold "></span>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="email" name="email" class="form-control" autocomplete="off"
+                        placeholder="Your Email" />
+                      {{!-- <label class="form-label" for="email">Your Email</label> --}}
+                      <span id="emailId" class="text-danger font-weight-bold"></span>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="tel" id="mobile" name="phone" class="form-control" autocomplete="off"
+                        placeholder="Mobile Number" />
+                      {{!-- <label class="form-label" for="">Mobile Number</label> --}}
+                      <span id="mob_no" class="text-danger font-weight-bold"></span>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="Password" id="password" name="Password" class="form-control" autocomplete="off"
+                        placeholder="Password" />
+                      {{!-- <label class="form-label" for="password">Password</label> --}}
+                      <span id="pass" class="text-danger font-weight-bold"></span>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="password1" name="password" class="form-control" autocomplete="off"
+                        placeholder="Confirm password" />
+                      {{!-- <label class="form-label" name="password2" for="password">Confirm password</label> --}}
+                      <span id="confirmpass" class="text-danger font-weight-bold"></span>
+                    </div>
+                  </div>
+
+                  {{!-- <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="tel" id="" name="number" class="form-control" />
+                      <label class="form-label" name="number" for="phone">ENTER PHONE NUMBER</label>
+                    </div>
+                  </div> --}}
+
+
+
+                  <div class="form-check d-flex  ">
+                    <div style="height: ; width:"></div>
+                    <input class="form-check-input me-2" type="checkbox" value="" id="Checkbox" />
+                    <label class="form-check-label" for="form2Example3">
+                      I agree all statements in <a href="#!">Terms of service</a>
+                    </label>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4 p-3">
+                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  class="img-fluid" alt="Sample image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+
+  function validateform() {
+    var user = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var mobile = document.getElementById('mobile').value;
+    var password = document.getElementById('password').value;
+    var password1 = document.getElementById('password1').value;
+
+
+    if (user == "") {
+      document.getElementById('yourname').innerHTML = "Please fill your name";
+      return false;
+    }
+    if (!isNaN(user)) {
+      document.getElementById('yourname').innerHTML = "Only characters allowed";
+      return false;
+    }
+    if ((user.length <= 2) || (user.length >= 20)) {
+      document.getElementById('yourname').innerHTML = "charecter must between 2 to 20";
+      return false;
+    }
+
+
+
+    if (email == "") {
+      document.getElementById('emailId').innerHTML = "Please fill your Email Id";
+      return false;
+    }
+    if (email.indexOf('@') <= 0) {
+      document.getElementById('emailId').innerHTML = "Invalid Email Id";
+      return false;
+    }
+    if ((email.charAt(email.length - 4) != '.') && (email.charAt(email.length - 3) != '.')) {
+      document.getElementById('emailId').innerHTML = ". Invalid Email Id position";
+      return false;
+    }
+
+
+
+
+
+
+    if (mobile == "") {
+      document.getElementById('mob_no').innerHTML = "Please fill your Mobile Number";
+      return false;
+    }
+    if (isNaN(mobile)) {
+      document.getElementById('mob_no').innerHTML = "Digits only characters not allowed";
+      return false;
+    }
+    if (mobile.length != 10) {
+      document.getElementById('mob_no').innerHTML = "10 digit mobile number required";
+      return false;
+    }
+
+
+
+
+
+
+    if (password == "") {
+      document.getElementById('pass').innerHTML = "Please fill your Password";
+      return false;
+    }
+    if ((password.length <= 5) || (password.length >= 20)) {
+      document.getElementById('pass').innerHTML = "Password must between 5 to 20";
+      return false;
+    }
+    if ((password != password1)) {
+      document.getElementById('pass').innerHTML = "Password are not matching";
+      return false;
+    }
+
+
+    if (password1 == "") {
+      document.getElementById('confirmpass').innerHTML = "Please fill your Confirm Password";
+      return false;
+    }
+
+    if ((password1 != password)) {
+      document.getElementById('confirmpass').innerHTML = "Password are not matching";
+      return false;
+    }
+
+    var checked = document.getElementById("Checkbox").value;
+    if (!document.getElementById('Checkbox').checked) {
+      alert('Please agree our terms and conditions');
+      return false;
+    }
+
+
+  }
+
+</script>

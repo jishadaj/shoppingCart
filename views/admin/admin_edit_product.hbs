@@ -1,0 +1,53 @@
+<section class="container mt-5">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Edit Product</h4>
+                
+                <form class="forms-sample mt-5" action="/admin/edit_product/{{product._id}}" method="post" enctype="multipart/form-data">
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Name" class="form-control" id="" placeholder="Name" value="{{product.Name}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Category</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Category" class="form-control" id="" placeholder="Category" value="{{product.Category}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Price</label>
+                        <div class="col-sm-9">
+                            <input type="number" name="Price" class="form-control" id="" placeholder="Price" value="{{product.Price}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Discription</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Discription" class="form-control" id=""
+                                placeholder="Discription" value="{{product.Discription}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Image</label>
+                        <img id="imgView" src="/product_images/{{product._id}}.jpg" alt="" style="width: 100px; height:auto;">
+                        <div class="col-sm-9 mt-3">        
+                            <input type="file" name="Image" class="form-control" onchange="preview(event)">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                    <button class="btn btn-light"><a class="btn btn-light" href="/admin/products">Cancel</a></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function preview(event){
+        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+    }
+</script>

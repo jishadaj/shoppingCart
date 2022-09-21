@@ -1,0 +1,29 @@
+<section class="container mt-5">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add Category</h4>
+                {{#if errMss}}
+                <div class="text-danger mt-5">
+                    <h5>{{errMss}}</h5>
+                </div>
+                {{/if}}
+
+                <form class="forms-sample mt-5" action="/admin/add_category" method="post"
+                    enctype="multipart/form-data">
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Category Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="categoryName" class="form-control" id="" placeholder="Name"
+                                autocomplete="off">
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

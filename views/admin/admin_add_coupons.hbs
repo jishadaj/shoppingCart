@@ -1,0 +1,77 @@
+<section class="container mt-5">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-5 mb-3 btn btn-gradient-light">
+                    <a style="text-decoration:none;color:black" href="">Coupons</a>
+                </div>
+
+                {{#if errMss}}
+                <div class="text-danger mt-5">
+                    <h5>{{errMss}}</h5>
+                </div>
+                {{/if}}
+
+                <form class="forms-sample mt-5" action="/admin/add_coupon" method="post" enctype="multipart/form-data"
+                    onsubmit="return Validateform()">
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Offer Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Name" class="form-control" id="name" placeholder="Offer Name"
+                                autocomplete="off">
+                            <span id="Name" class="text-danger font-weight-bold "></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Coupon Code</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Code" class="form-control" id="name" placeholder="Coupon Code"
+                                autocomplete="off">
+                            <span id="Name" class="text-danger font-weight-bold "></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Discount Value</label>
+                        <div class="col-sm-9">
+                            <input type="number" name="Discount" class="form-control" id="price" placeholder="Discount Value in %"
+                                autocomplete="off">
+                            <span id="Pri" class="text-danger font-weight-bold "></span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                    {{!-- <button class="btn btn-light">Cancel</button> --}}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+    function Validateform() {
+        var name = document.getElementById('name').value;
+        var price = document.getElementById('price').value;
+
+
+
+        if (name == "") {
+            document.getElementById('Name').innerHTML = "** Name should not be blank";
+            return false;
+        }
+
+        if (price == "") {
+            document.getElementById('Pri').innerHTML = "Please fill Price";
+            return false;
+        }
+        if (isNaN(price)) {
+            document.getElementById('Pri').innerHTML = "Digits only characters not allowed";
+            return false;
+        }
+
+
+    }
+
+</script>

@@ -1,0 +1,208 @@
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Wishlist</h4>
+                    <div class="breadcrumb__links">
+                        <a href="/">Home</a>
+                        <a href="">Wishlist</a>
+                        <span>Your Wishlist</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    {{#if products}}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Name</th>
+                                <th>Price</th>
+
+                            </tr>
+                        </thead>
+                        {{#each products}}
+                        <tbody>
+
+                            <tr>
+
+                                <td class="product__cart__item" style="width: 150px;">
+                                    <div class="product__cart__item__pic">
+                                        <img style="width: 100px; height:auto;"
+                                            src="/product_images/{{this.product._id}}.jpg" alt="">
+
+                                    </div>
+
+                                </td>
+                                <td class="cart__price" style="width: 223px;">{{this.product.Name}}</td>
+                                <td class="cart__price">Rs.{{this.product.Price}}</td>
+
+                                {{!-- <td class="quantity__item">
+                                    <button class="cart-item-count btn btn-light font-weight-bold mr-3"
+                                        onclick="changeQuatity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">-</button>
+                                    <span id="{{this.product._id}}">{{this.quantity}}</span>
+                                    <button class="cart-item-count btn btn-light font-weight-bold ml-3"
+                                        onclick="changeQuatity('{{this._id}}','{{this.product._id}}','{{../user}}',1)">+</button>
+                                    {{!-- <div class="quantity">
+                                        <div class="pro-qty-2">
+                                            <input type="text" value="{{this.quantity}}">
+                                        </div>
+                                    </div>
+                                </td> --}}
+                                <td><button onclick="addToCart('{{this.product._id}}')" class="btn btn-light shadow border border-dark">Add To Cart</button></td>
+                                <td class="cart__close"><a
+                                        onclick="remove_wishItem('{{this._id}}','{{this.product._id}}')" href=""><i
+                                            class="fa fa-close shadow"></i></a></td>
+
+                            </tr>
+
+                        </tbody>
+                        {{/each}}
+                    </table>
+                    {{else}}
+                    <section>
+                        {{!-- <div class="container-fluid  mt-100"> --}}
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="card">
+
+                                        <div class="card-body cart">
+                                            <div class="col-sm-12 empty-cart-cls text-center">
+                                                <img src="images/cart.png" width="130" height="130"
+                                                    class="img-fluid mb-4 mr-3">
+                                                <h3><strong>Your Wishlist is Empty</strong></h3>
+                                                <h4>Add something to make me happy :)</h4>
+                                                <a href="/" class="btn btn-dark cart-btn-transform m-3"
+                                                    data-abc="true">continue shopping</a>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            {{!--
+                        </div> --}}
+
+                        <style>
+                            @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+                            body {
+                                background-color: #eee;
+                                font-family: 'Calibri', sans-serif !important;
+                            }
+
+                            .mt-100 {
+                                margin-top: 100px;
+
+                            }
+
+
+                            .card {
+                                margin-bottom: 30px;
+                                border: 0;
+                                -webkit-transition: all .3s ease;
+                                transition: all .3s ease;
+                                letter-spacing: .5px;
+                                border-radius: 8px;
+                                -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+                                box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+                            }
+
+                            .card .card-header {
+                                background-color: #fff;
+                                border-bottom: none;
+                                padding: 24px;
+                                border-bottom: 1px solid #f6f7fb;
+                                border-top-left-radius: 8px;
+                                border-top-right-radius: 8px;
+                            }
+
+                            .card-header:first-child {
+                                border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+                            }
+
+
+
+                            .card .card-body {
+                                padding: 30px;
+                                background-color: transparent;
+                            }
+
+                            .btn-primary,
+                            .btn-primary.disabled,
+                            .btn-primary:disabled {
+                                background-color: #4466f2 !important;
+                                border-color: #4466f2 !important;
+                            }
+                        </style>
+
+
+
+                    </section>
+
+                    {{/if}}
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                            <a href="/">Continue Shopping</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{#if products}}
+            <div class="col-lg-4">
+
+                <div class="cart__total">
+                    <h6>Wishlist total</h6>
+                    <ul>
+
+                        <li>Total <span class="text-success">Rs.<span class="text-success"
+                                    id="total">{{totalValue}}</span></span></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    </div>
+</section>
+
+<script>
+
+
+    function remove_wishItem(cartId, proId) {
+        $.ajax({
+            url: '/remove_wishItem',
+            data: {
+                cart: cartId,
+                product: proId
+            },
+            method: 'post',
+            success: (response) => {
+                alert("Product removed from wishlist")
+                location.reload()
+            }
+        })
+    }
+</script>

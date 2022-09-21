@@ -1,0 +1,60 @@
+<section class="container mt-5">
+  <div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row mt-5 mb-3 btn btn-gradient-light">
+          <a style="text-decoration:none;color:black" href="">Banner</a>
+        </div>
+
+        <form class="forms-sample mt-5" action="/admin/add_banner" method="post" enctype="multipart/form-data"
+          onsubmit="return Validateform()">
+          <div class="form-group row">
+            <label for="" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+              <input type="text" name="Name" class="form-control" id="name" placeholder="Name" autocomplete="off">
+              <span id="Name" class="text-danger font-weight-bold "></span>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="" class="col-sm-3 col-form-label">Image</label>
+            <div class="col-sm-9">
+              <input type="file" name="Image" class="form-control" id="image">
+              <span id="Img" class="text-danger font-weight-bold "></span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+          {{!-- <button class="btn btn-light">Cancel</button> --}}
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+
+  function Validateform() {
+    var name = document.getElementById('name').value;
+
+    var image = document.getElementById('image').value;
+
+
+
+    if (name == "") {
+      document.getElementById('Name').innerHTML = "** Name should not be blank";
+      return false;
+    }
+
+
+
+    if (image == "") {
+      document.getElementById('Img').innerHTML = "** Image required";
+      return false;
+    }
+
+
+  }
+
+</script>

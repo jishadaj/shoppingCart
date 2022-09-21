@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-5 mb-3 btn btn-gradient-light">
+                    <a style="text-decoration:none;color:black" href="/admin/add_coupons">Add Coupons</a>
+                </div>
+                <table class="table table-striped mt-5" id="protable">
+                    <thead>
+                        <tr>
+
+                            <th scope="col">Offer Name</th>
+                            <th scope="col">Coupon Code</th>
+                            <th scope="col">Discount Value</th>
+                            <th scope="col">Action</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each coupons}}
+                        <tr>
+                            <th scope="row" class="text-success">{{this.Name}}</th>
+                            <td>{{this.Code}}</td>
+                            <td>{{this.Discount}}%</td>
+                            <td><button class="btn btn-light border border-dark "><a style="text-decoration: none;"
+                                        class="text-dark " onclick="Remove('{{this._id}}')">Remove</a></button></td>
+
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+        $('#protable').wrap('<div id="hide" style="display:none"/>');
+
+        $('#hide').css('display', 'block');
+    });
+
+    var table = $('#protable').DataTable();
+
+    function Remove(couponId) {
+
+        $.ajax({
+            
+            url: '/admin/remove_coupon/'+couponId,
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    alert("Do You Wanna Remove Coupon ?")
+                    location.reload()
+                }
+
+            }
+        })
+    }
+
+</script>

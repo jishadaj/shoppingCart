@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-5 mb-3 btn btn-gradient-primary ">
+                    <a style="text-decoration:none;color:whitesmoke" href="/admin/add_category">Add Category</a>
+                </div>
+                <table class="table table-striped mt-5" id="catable">
+                    <thead>
+                        <tr>
+                           
+                            <th scope="col" class="font-weight-bold"><h2>Category</h2></th>
+                            <th>Action</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each category}}
+                        <tr>
+                            
+                            <td>{{this.categoryName}}</td>
+                        
+                            <td>
+                                <a class="btn btn-light border border-dark text-dark" href="/admin/edit_category/{{this._id}}">Edit</a>
+                                <a class="btn btn-dark" href="/admin/del_category/{{this._id}}" onclick="return confirm('Confirm Delete {{this.categoryName}} ?? ')">Delete</a>
+                            </td>
+
+                        </tr>
+                        {{/each}}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+        $('#catable').wrap('<div id="hide" style="display:none"/>');
+
+        $('#hide').css('display', 'block');
+    });
+
+
+    var table = $('#catable').DataTable();
+</script>

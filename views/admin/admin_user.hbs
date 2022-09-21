@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-5 mb-3 btn btn-gradient-light">
+                    <a style="text-decoration:none;color:black" href="">Users</a>
+                </div>
+                <table class="table table-striped mt-5" id="usertable">
+                    <thead>
+                        <tr>
+
+                            <th scope="col"> User ID </th>
+                            <th scope="col"> Name </th>
+                            <th scope="col"> Email </th>
+                            <th scope="col"> Contact </th>
+                            <th scope="col"> Action </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each users}}
+                        <tr>
+                            <td class="text-success">{{this._id}}</td>
+                            <td>{{this.name}}</td>
+                            <td>{{this.email}}</td>
+                            <td>+91-{{this.phone}}</td>
+
+                            <td>
+                                {{#if this.isBlocked}}
+                                <a class="btn btn-light border border-dark text-dark"
+                                    href="/admin/unblock/{{this._id}}" onclick="return confirm('Confirm UnBlocking {{this.name}} ?? ')">UnBlock</a>
+                                {{else}}
+                                <a class="btn btn-dark " style="width: 135px;"
+                                    href="/admin/block/{{this._id}}" onclick="return confirm('Confirm Blocking {{this.name}} ?? ')">Block</a>
+                                {{/if}}
+                            </td>
+
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+
+        $('#usertable').wrap('<div id="hide" style="display:none"/>');
+
+        $('#hide').css('display', 'block');
+    });
+
+
+    var table = $('#usertable').DataTable();
+</script>

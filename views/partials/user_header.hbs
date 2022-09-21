@@ -1,0 +1,84 @@
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+
+
+<!-- Header Section Begin -->
+<header class="header" style="height:100px; background-colot:;">
+
+    <div class="container-fixed-top">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 ms-5">
+                <div class="header__logo ms-5 mt-1">
+                    <a href="/"><img style="width: 100px; margin-left: 80px;margin-top: -33px;" src="images/aj_logo2.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/shop">Shop</a></li>
+                        <li><a href="">Category</a>
+
+                            <ul class="dropdown">
+                                {{#each category}}
+                                <li><a href="/catSelect/{{this.categoryName}}">{{this.categoryName}}</a></li>
+                                {{/each}}
+                            </ul>
+
+                        </li>
+                        {{#if user}}
+                        <li><a href="/Orders">Orders</a></li>
+                        {{/if}}
+                        <li><a href="">Contacts</a></li>
+                        
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="header__nav__option d-flex">
+                    <a href="#" class="search-switch"><img src="user_home/img/icon/search.png" alt=""></a>
+                    <a class="fa fa-heart-o" style="font-size:24px;color:black" href="/wishlist"><span id="wish_count">{{wishCount}}</span></a>
+                    <a href="/cart"><img style="width: 20px; height:auto;" src="user_home/img/icon/cart.png" alt="">
+                        <span id="cart_count">{{cartCount}}</span></a>
+                    {{!-- <a id="sign_in" href="login">
+
+                        {{#if user}}
+                        {{user.name}}
+                        {{else}}
+                        Sign in
+                        {{/if}}
+                    </a> --}}
+
+                    <div class="dropdown">
+                        <button class="btn btn-outline-dark dropdown-toggle " type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{#if user}}
+                            {{user.name}}
+                            {{else}}
+                            Account
+                            {{/if}}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            {{#if user}}
+                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            {{else}}
+                            <li><a class="dropdown-item" href="/login">Login</a></li>
+                            {{/if}}
+
+
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open"><i class="fa fa-bars"></i></div>
+    </div>
+</header>
+<!-- Header Section End -->
+

@@ -1,0 +1,122 @@
+<section class="container mt-5">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add Product</h4>
+
+                <form class="forms-sample mt-5" action="/admin/add_product" method="post" enctype="multipart/form-data" onsubmit="return Validateform()">
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Name" class="form-control" id="name" placeholder="Name" autocomplete="off">
+                            <span id="Name" class="text-danger font-weight-bold "></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <label for="" class="col-sm-3 col-form-label">Category</label>
+                        <div class="col-sm-9">
+
+                            <select name="Category" class="custom-select form-control" style="height: 45px;" id="category">
+                                <option selected>Choose...</option>
+                                {{#each category}}
+                                <option>{{this.categoryName}}</option>
+                                {{/each}}
+                            </select>
+                            <span id="Cat" class="text-danger font-weight-bold "></span>
+
+                        </div>
+
+
+                        {{!-- <label for="" class="col-sm-3 col-form-label">Category</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Category" class="form-control" id="" placeholder="Category">
+                        </div> --}}
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Price</label>
+                        <div class="col-sm-9">
+                            <input type="number" name="Price" class="form-control" id="price" placeholder="Price" autocomplete="off">
+                            <span id="Pri" class="text-danger font-weight-bold "></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Brand Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="BrandName" class="form-control" id="brandname" placeholder="Brand Name" autocomplete="off">
+                            <span id="Brand" class="text-danger font-weight-bold "></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Discription</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Discription" class="form-control" id="discription" placeholder="Discription" autocomplete="off">
+                            <span id="Disc" class="text-danger font-weight-bold "></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-sm-3 col-form-label">Image</label>
+                        <div class="col-sm-9">
+                            <input type="file" name="Image" class="form-control" id="image">
+                            <span id="Img" class="text-danger font-weight-bold "></span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                    {{!-- <button class="btn btn-light">Cancel</button> --}}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+function Validateform(){
+    var name = document.getElementById('name').value;
+    var category = document.getElementById('category').value;
+    var price = document.getElementById('price').value;
+    var brandname = document.getElementById('brandname').value;
+    var discription = document.getElementById('discription').value;
+    var image = document.getElementById('image').value;
+
+
+
+    if (name == "") {
+      document.getElementById('Name').innerHTML = "** Name should not be blank";
+      return false;
+    }
+
+    if (category == "Choose...") {
+      document.getElementById('Cat').innerHTML = "Please choose a category";
+      return false;
+    }
+
+    if (price == "") {
+      document.getElementById('Pri').innerHTML = "Please fill Price";
+      return false;
+    }
+    if (isNaN(price)) {
+      document.getElementById('Pri').innerHTML = "Digits only characters not allowed";
+      return false;
+    }
+
+    if (brandname == "") {
+      document.getElementById('Brand').innerHTML = "Please fill Brand Name";
+      return false;
+    }
+
+    if (discription == "") {
+      document.getElementById('Disc').innerHTML = "** Please add some discription";
+      return false;
+    }
+
+    if (image == "") {
+      document.getElementById('Img').innerHTML = "** Image required";
+      return false;
+    }
+
+    
+}
+
+</script>

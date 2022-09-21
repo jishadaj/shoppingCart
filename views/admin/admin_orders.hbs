@@ -1,0 +1,163 @@
+<div class="container">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-5 mb-3 btn btn-gradient-light">
+                    <a style="text-decoration:none;color:black" href="">Orders</a>
+                </div>
+                <table class="table table-striped mt-5" id="protable">
+                    <thead>
+                        <tr>
+
+                            <th scope="col">Order Id</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">View</th>
+                            <th scope="col">Action</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each orders}}
+                        <tr>
+                            <th scope="row" class="text-success">{{this._id}}</th>
+                            <td>{{this.deliveryDetails.date}}</td>
+                            <td>{{this.deliveryDetails.address}}<br>{{this.deliveryDetails.pincode}}<br>{{this.deliveryDetails.phone}}
+                            </td>
+                            <td>Rs.{{this.totalAmount}}</td>
+                            <td>{{this.paymentMethod}}</td>
+                            <td id="status">{{this.status}}</td>
+                            <td><button class="btn btn-light border border-dark "><a style="text-decoration: none;"
+                                        class="text-dark " href="/view_orders?id={{this._id}}">View
+                                        Products</a></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <a class="btn btn-light border border-dark dropdown-toggle" href="#" role="button"
+                                        id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Update
+                                    </a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        {{#if this.status}}
+                                        <li><a class="dropdown-item text-dark" href="" id="" onclick="Accept('{{this._id}}')">Accept</a></li>
+                                        <li><a class="dropdown-item text-dark" href="" id="" onclick="Transit('{{this._id}}')">In Transit</a></li>
+                                        <li><a class="dropdown-item text-dark" href="" id="" onclick="shipped('{{this._id}}')">Shipped</a></li>
+                                        <li><a class="dropdown-item text-dark" href="" id="" onclick="Delivered('{{this._id}}')">Delivered</a></li>
+                                        {{/if}}
+                                        <li><a class="dropdown-item text-dark" href="" onclick="cancelled('{{this._id}}')">Cancel</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+        $('#protable').wrap('<div id="hide" style="display:none"/>');
+
+        $('#hide').css('display', 'block');
+    });
+
+
+    var table = $('#protable').DataTable();
+
+    function shipped(orderId){
+        
+        $.ajax({
+            url: '/admin/shipped/'+orderId,
+           
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    alert("Confirm Shipping ?")
+                    document.getElementById('status').innerHTML = "Shipped"
+                    location.reload()
+                } 
+               
+            }
+        })
+    }
+
+    function Accept(orderId){
+        
+        $.ajax({
+            url: '/admin/accept/'+orderId,
+           
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    alert("Confirm Accept ?")
+                    document.getElementById('status').innerHTML = "Accept"
+                    location.reload()
+                } 
+               
+            }
+        })
+    }
+
+    function Transit(orderId){
+        
+        $.ajax({
+            url: '/admin/transit/'+orderId,
+           
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    alert("Confirm Transit ?")
+                    document.getElementById('status').innerHTML = "In Transit"
+                    location.reload()
+                } 
+               
+            }
+        })
+    }
+
+    function Delivered(orderId){
+        
+        $.ajax({
+            url: '/admin/delivered/'+orderId,
+           
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    alert("Confirm delivery ?")
+                    document.getElementById('status').innerHTML = "Delivered"
+                    location.reload()
+                } 
+               
+            }
+        })
+    }
+
+    function cancelled(orderId){
+       
+        $.ajax({
+            url: '/admin/cancelled/'+orderId,
+           
+            method: 'get',
+            success: (response) => {
+                if (response.status) {
+                    alert("Confirm cancel ?")
+                    document.getElementById('status').innerHTML = "Cancelled"
+                    location.reload()
+                } 
+               
+            }
+        })
+    }
+</script>
